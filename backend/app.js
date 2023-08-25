@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
-// const cors = require('./middlewares/cors');
+const cors = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const users = require('./routes/users');
 const cards = require('./routes/cards');
@@ -28,7 +28,7 @@ app.use(rateLimit({
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors);
 
 app.use(requestLogger);
 
