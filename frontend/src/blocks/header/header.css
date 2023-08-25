@@ -1,0 +1,16 @@
+.header {
+  width: 100%;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  padding: 45px 0 41px 0;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: start;
+  align-items: end;
+}
+
+@media screen and (max-width: 570px) {
+  .header {
+    padding: 28px 25px 31.6px 27px;
+  }
+}
