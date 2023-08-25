@@ -9,8 +9,8 @@
 
 [Адрес репозитория](https://github.com/finlandka/react-mesto-api-full-gha)
 
-IP-адрес 158.160.48.1
+IP 158.160.48.1
 
-[Frontend](https://voloh.nomoredomainsicu.ru/)
+Frontend https://voloh.nomoredomainsicu.ru/
 
-[Backend](https://api.voloh.nomoredomainsicu.ru/)
+Backend https://api.voloh.nomoredomainsicu.ru/
