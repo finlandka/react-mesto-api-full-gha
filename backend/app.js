@@ -18,6 +18,7 @@ const { createUser, login } = require('./controllers/users');
 const NotFoundError = require('./errors/NotFoundError');
 
 const app = express();
+app.use(cors);
 
 mongoose.connect(DB_URL, {});
 
@@ -28,7 +29,6 @@ app.use(rateLimit({
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors);
 
 app.use(requestLogger);
 

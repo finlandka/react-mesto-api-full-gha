@@ -20,7 +20,7 @@ class Api {
   _getHeaders() {
     const token = localStorage.getItem('token');
     return {
-      authorization: `${token}`,
+      authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     }
   }
