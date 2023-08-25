@@ -1,7 +1,6 @@
 class Api {
-  constructor({ baseUrl, headers }) {
+  constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
-    this._headers = headers;
     this.userId = null;
   }
 
@@ -18,8 +17,17 @@ class Api {
     return res.json();
   }
 
+  _getHeaders() {
+    const token = localStorage.getItem('token');
+    return {
+      authorization: `${token}`,
+      'Content-Type': 'application/json'
+    }
+  }
+
+
   getUserInfo() {
-    return this._request("users/me", { headers: this._headers }).then(
+    return this._request("users/me", { headers: this._getHeaders() }).then(
       (data) => {
         this.userId = data._id;
         return data;
@@ -28,13 +36,13 @@ class Api {
   }
 
   getCards() {
-    return this._request("cards", { headers: this._headers });
+    return this._request("cards", { headers: this._getHeaders() });
   }
 
   setUserInfo(data) {
     return this._request("users/me", {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -45,7 +53,7 @@ class Api {
   setUserAvatar(data) {
     return this._request("users/me/avatar", {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         avatar: data.avatar,
       }),
@@ -55,7 +63,7 @@ class Api {
   addCard(data) {
     return this._request("cards", {
       method: "POST",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -66,24 +74,20 @@ class Api {
   deleteCard(cardId) {
     return this._request(`cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._getHeaders(),
     });
   }
 
   changeLikeCardStatus(cardId, isLike) {
     return this._request(`cards/${cardId}/likes`, {
       method: `${isLike ? "PUT" : "DELETE"}`,
-      headers: this._headers,
+      headers: this._getHeaders(),
     });
   }
 }
 
 const api = new Api({
-  baseUrl: "https://nomoreparties.co/v1/cohort-66",
-  headers: {
-    authorization: "18f7db66-c3a4-4e8d-a393-391bdf601f7c",
-    "Content-Type": "application/json",
-  },
+  baseUrl: "https://api.voloh.nomoredomainsicu.ru"
 });
 
 export { api };
