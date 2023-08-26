@@ -18,7 +18,9 @@ function getTokenFromHeaders(rawHeaders) {
 }
 
 module.exports = (req, res, next) => {
-  const { token } = { token: getTokenFromHeaders(req.rawHeaders) };
+  const { token } = req.cookies.token
+    ? req.cookies
+    : { token: getTokenFromHeaders(req.rawHeaders) };
   if (!token) {
     throw new UnauthorizedError('Необходима авторизация');
   }
