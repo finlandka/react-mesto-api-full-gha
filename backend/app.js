@@ -34,6 +34,11 @@ app.use(requestLogger);
 
 app.use('/users', auth, users);
 app.use('/cards', auth, cards);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.post('/signin', validateAuth, login);
 app.post('/signup', validateRegister, createUser);
 app.use('*', (req, res, next) => {
