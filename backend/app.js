@@ -25,15 +25,15 @@ app.use(cors);
 
 mongoose.connect(DB_URL, {});
 
-app.use(rateLimit({
-  windowMs: 10 * 60 * 1000,
-  max: 100,
-}));
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.use(requestLogger);
+app.use(rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 100,
+}));
 
 app.use('/users', auth, users);
 app.use('/cards', auth, cards);
