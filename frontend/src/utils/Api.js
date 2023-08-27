@@ -28,15 +28,19 @@ class Api {
 
   getUserInfo() {
     return this._request("users/me", { headers: this._getHeaders() }).then(
-      (data) => {
-        this.userId = data._id;
-        return data;
+      (resp) => {
+        this.userId = resp._id;
+        return resp.data;
       }
     );
   }
 
   getCards() {
-    return this._request("cards", { headers: this._getHeaders() });
+    return this._request("cards", { headers: this._getHeaders() }).then(
+      (resp) => {
+        return resp.data;
+      }
+    );
   }
 
   setUserInfo(data) {
@@ -82,7 +86,11 @@ class Api {
     return this._request(`cards/${cardId}/likes`, {
       method: `${isLike ? "PUT" : "DELETE"}`,
       headers: this._getHeaders(),
-    });
+    }).then(
+      (resp) => {
+        return resp.data;
+      }
+    );
   }
 }
 

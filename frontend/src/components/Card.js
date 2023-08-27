@@ -9,7 +9,7 @@ export default React.memo(function Card({
 }) {
   const currentUser = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some((i) => i === currentUser._id);
   const cardLikeButtonClassName = `button heart ${
     isLiked && "heart_status_active"
   }`;

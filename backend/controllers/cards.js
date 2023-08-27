@@ -38,6 +38,7 @@ const deleteCard = (req, res, next) => {
 
 const addLikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
+    .populate('owner')
     .orFail(new NotFoundError('Передан несуществующий _id карточки'))
     .then((card) => res.status(OK).send({ data: card }))
     .catch((err) => next(err));
@@ -45,6 +46,7 @@ const addLikeCard = (req, res, next) => {
 
 const deleteLikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
+    .populate('owner')
     .orFail(new NotFoundError('Передан несуществующий _id карточки'))
     .then((card) => res.status(OK).send({ data: card }))
     .catch((err) => next(err));
