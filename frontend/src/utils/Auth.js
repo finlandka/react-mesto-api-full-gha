@@ -1,4 +1,4 @@
-const BASE_URL = "http://api.voloh.nomoredomainsicu.ru";
+const BASE_URL = "https://api.voloh.nomoredomainsicu.ru";
 
 const getResponseData = (res) => {
   if (!res.ok) {

@@ -104,7 +104,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "http://api.voloh.nomoredomainsicu.ru"
+  baseUrl: "https://api.voloh.nomoredomainsicu.ru"
 });
 
 export { api };
