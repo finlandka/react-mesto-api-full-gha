@@ -1,4 +1,6 @@
+const { NODE_ENV, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
+
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 function getTokenFromHeaders(rawHeaders) {
@@ -26,7 +28,7 @@ module.exports = (req, res, next) => {
   }
   let payload;
   try {
-    payload = jwt.verify(token, '30f98350f2ad0003019dc146717794d9e2e63348f3147406ce0404d05e4c2665');
+    payload = jwt.verify(token, NODE_ENV !== 'production' ? 'dev-secret' : JWT_SECRET);
   } catch (err) {
     next(err);
   }

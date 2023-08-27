@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const dotenev = require('dotenv');
+
+dotenev.config();
 const { PORT = 3000, DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
