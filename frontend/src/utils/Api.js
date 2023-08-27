@@ -51,7 +51,10 @@ class Api {
         name: data.name,
         about: data.about,
       }),
-    });
+    })
+      .then((resp) => {
+        return resp.data;
+      });
   }
 
   setUserAvatar(data) {
@@ -61,7 +64,10 @@ class Api {
       body: JSON.stringify({
         avatar: data.avatar,
       }),
-    });
+    })
+      .then((resp) => {
+        return resp.data;
+      });
   }
 
   addCard(data) {
@@ -72,7 +78,10 @@ class Api {
         name: data.name,
         link: data.link,
       }),
-    });
+    })
+      .then((resp) => {
+        return resp.data;
+      });
   }
 
   deleteCard(cardId) {
