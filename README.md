@@ -8,3 +8,4 @@
 * React.js
 * Express.js
 * MongoDB
+* Node v.16.20.2 и выше
